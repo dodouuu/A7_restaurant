@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center">
+  <h2 class="bg-info m-3 p-1 rounded">編輯餐廳的頁面</h2>
+</div>
+
+<form action="/restaurants/{{restaurant._id}}/edit" method="POST">
+  <input class="d-block m-2" type="text" placeholder="中文名稱" name="name" value="{{restaurant.name}}" required />
+  <input class="d-block m-2" type="text" placeholder="英文名稱" name="name_en" value="{{restaurant.name_en}}" required />
+
+  <label for="restaurantCategory" class="ms-2">餐廳分類：</label>
+  <input class="my-2" type="text" list="restaurantCategories" id="restaurantCategory" name="category"
+    value="{{restaurant.category}}" required />
+  <datalist id="restaurantCategories">
+    <option value="中東料理" />
+    <option value="日本料理" />
+    <option value="義式餐廳" />
+    <option value="美式" />
+    <option value="酒吧" />
+    <option value="咖啡" />
+  </datalist>
+  <input class="d-block m-2" type="text" placeholder="圖片網址" name="image" value="{{restaurant.image}}" required />
+  <input class="d-block m-2" type="text" placeholder="餐廳地址" name="location" value="{{restaurant.location}}" required />
+  <input class="d-block m-2" type="text" placeholder="餐廳電話" name="phone" value="{{restaurant.phone}}" required />
+  <input class="d-block m-2" type="text" placeholder="GoogleMap網址" name="google_map" value="{{restaurant.google_map}}"
+    required />
+
+  <label for="rating" class="ms-2">餐廳評分：</label>
+  <input class="my-2" type="range" min="0" max="5" step="0.1" name="rating" id="rating" value="{{restaurant.rating}}"
+    oninput="document.getElementById('showRating').textContent=value"
+    onchange="document.getElementById('showRating').textContent=value" />
+  <span id="showRating"></span>
+
+  <label for="description" class="d-block m-2">餐廳描述：</label>
+  <textarea id="description" class="m-2" type="text" rows="3" cols="40" name="description"
+    required>{{restaurant.description}}</textarea>
+
+  <div class="d-flex justify-content-center">
+    <button type="submit" class="btn btn-info btn-lg m-2">Save</button>
+    <a href="/">
+      <button type="button" class="btn btn-info btn-lg m-2">返回首頁</button>
+    </a>
+  </div>
+
+</form>
+
+<script>
+  document.getElementById('showRating').textContent = {{ restaurant.rating }}
+</script>

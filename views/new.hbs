@@ -1,0 +1,40 @@
+<div class="d-flex justify-content-center">
+  <h2 class="bg-info m-3 p-1 rounded">新增餐廳的頁面</h2>
+</div>
+
+<form action="/restaurants" method="POST">
+  <input class="d-block m-2" type="text" placeholder="中文名稱" name="name" required />
+  <input class="d-block m-2" type="text" placeholder="英文名稱" name="name_en" required />
+
+  <label for="restaurantCategory" class="ms-2">餐廳分類：</label>
+  <input class="my-2" type="text" list="restaurantCategories" id="restaurantCategory" name="category" required />
+  <datalist id="restaurantCategories">
+    <option value="中東料理" />
+    <option value="日本料理" />
+    <option value="義式餐廳" />
+    <option value="美式" />
+    <option value="酒吧" />
+    <option value="咖啡" />
+  </datalist>
+  <input class="d-block m-2" type="text" placeholder="圖片網址" name="image" required />
+  <input class="d-block m-2" type="text" placeholder="餐廳地址" name="location" required />
+  <input class="d-block m-2" type="tel" placeholder="餐廳電話" name="phone" required />
+  <input class="d-block m-2" type="text" placeholder="GoogleMap網址" name="google_map" required />
+
+  <label for="rating" class="ms-2">餐廳評分：</label>
+  <input class="my-2" type="range" min="0" max="5" value="4" step="0.1" name="rating" id="rating"
+    oninput="document.getElementById('showRating').textContent=value"
+    onchange="document.getElementById('showRating').textContent=value" />
+  <span id="showRating">4.0</span>
+
+  <label for="description" class="d-block m-2">餐廳描述：</label>
+  <textarea id="description" class="m-2" type="text" rows="3" cols="40" name="description" required></textarea>
+
+  <div class="d-flex justify-content-center">
+    <button type="submit" class="btn btn-info btn-lg m-2">Create</button>
+    <a href="/">
+      <button type="button" class="btn btn-info btn-lg m-2">返回首頁</button>
+    </a>
+  </div>
+
+</form>
