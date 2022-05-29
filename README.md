@@ -46,9 +46,12 @@ npm i mongoose@5.9.7
 npm install body-parser
 ```
 4. 資料庫
-開啟 MongoDB Atlas
-開啟 Robo3T 
-設定環境變數，以 Git Bash 為例，輸入：export MONGODB_URI="mongodb+srv://<username>:<password>@cluster0.am8naws.mongodb.net/restaurant?retryWrites=true&w=majority"
+    1. 開啟 MongoDB Atlas
+    2. 開啟 Robo3T 
+    3. 設定環境變數，以 Git Bash 為例，輸入：
+    ```
+    export MONGODB_URI="mongodb+srv://<username>:<password>@cluster0.am8naws.mongodb.net/restaurant?retryWrites=true&w=majority"
+    ```
 
 5. 執行
 ```
