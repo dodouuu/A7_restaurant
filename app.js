@@ -2,9 +2,8 @@
 const express = require('express')
 const app = express()
 
-const bodyParser = require('body-parser') // 引用 body-parser
 // 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
 
 const Restaurant = require('./models/restaurant') // 引用 Schema 
 
@@ -72,15 +71,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
   const body = req.body
   return Restaurant.findById(id)
     .then(restaurant => {
-      restaurant.name = body.name
-      restaurant.name_en = body.name_en
-      restaurant.category = body.category
-      restaurant.image = body.image
-      restaurant.location = body.location
-      restaurant.phone = body.phone
-      restaurant.google_map = body.google_map
-      restaurant.rating = body.rating
-      restaurant.description = body.description
+      restaurant = Object.assign(restaurant, body)
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${id}`))
@@ -99,19 +90,18 @@ app.post('/restaurants/:id/delete', (req, res) => {
 // 搜尋餐廳
 app.get('/search', (req, res) => {
   const originalKeyword = req.query.keyword.trim()
-  const lowerCaseKeyword = originalKeyword.toLowerCase()
 
-  Restaurant.find()
-    .lean()
-    .then(restaurantList => {
-      const restaurants = restaurantList.filter(
-        restaurant => {
-          return restaurant.name.toLowerCase().includes(lowerCaseKeyword) || restaurant.category.toLowerCase().includes(lowerCaseKeyword)
-        }
-      )
-      res.render('index', { restaurants: restaurants, keywords: originalKeyword })
+  Restaurant.find(
+    {
+      $or: [
+        { name: { $regex: originalKeyword, $options: 'si' } },
+        { category: { $regex: originalKeyword, $options: 'si' } }
+      ]
     })
-
+    .lean()
+    .then(restaurants => {
+      res.render('index', { restaurants, keywords: originalKeyword })
+    })
     .catch(error => console.error(error))
 })
 

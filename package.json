@@ -1,7 +1,7 @@
 {
   "name": "restaurantlist",
   "version": "1.0.0",
-  "description": "",
+  "description": "![cover](https://raw.githubusercontent.com/dodouuu/pictures/main/A7%E9%A4%90%E5%BB%B3%E6%B8%85%E5%96%AE%E6%93%B4%E5%85%85%20CRUD%20%E5%8A%9F%E8%83%BD%20Cover.png)\r # Express app - Restaurant List ext CRUD\r 打造一個網站來收集另一種愛好：餐廳\r > extended function: \r > Create\r > Read\r > Update\r > Delete",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -16,6 +16,15 @@
     "body-parser": "^1.20.0",
     "express": "^4.16.4",
     "express-handlebars": "^4.0.2",
+    "method-override": "^3.0.0",
     "mongoose": "^5.9.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dodouuu/A7_restaurant.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dodouuu/A7_restaurant/issues"
+  },
+  "homepage": "https://github.com/dodouuu/A7_restaurant#readme"
 }
